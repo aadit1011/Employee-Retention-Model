@@ -147,6 +147,8 @@ plt.title('Frequency of Gender by Day')
 plt.savefig('day_gender_heatmap.png')
 plt.show()
 
+
+
 # --------------------------------------------
 # PAIRPLOTS - Pairwise relationships between variables
 # --------------------------------------------
@@ -170,3 +172,28 @@ plt.legend(title='Species')
 plt.savefig('sepal_length_vs_width.png')
 plt.show()
 
+# Creating a pivot table to restructure the 'flights' dataset for heatmap visualization
+# The pivot table organizes data by 'year' as rows (index) and 'month' as columns, 
+# with the corresponding 'passengers' values as the data to display.
+
+var2 = flight.pivot_table(values=['passengers'], index=['year'], columns=['month'])
+
+# Plotting a heatmap using the pivot table
+# A heatmap visually represents numerical data in a grid format, 
+# where each cell is colored based on its value, allowing us to identify patterns or trends easily.
+
+sns.heatmap(var2, cmap='coolwarm', annot=True, fmt='.0f')
+
+# Parameters explained:
+# - `cmap='coolwarm'`: Sets the color map for the heatmap to visually represent low and high values with distinct colors.
+# - `annot=True`: Displays the actual data values in each cell for reference.
+# - `fmt='.0f'`: Formats the annotations to display as integers (removing any decimals).
+
+# Saving the generated heatmap as an image file for future reference or use in presentations
+plt.savefig('heatplot1')
+
+# Displaying the heatmap plot
+plt.title('Passenger Traffic by Year and Month')  # Adding a descriptive title to the plot
+plt.xlabel('Month')  # Labeling the x-axis to indicate months
+plt.ylabel('Year')  # Labeling the y-axis to indicate years
+plt.show()
